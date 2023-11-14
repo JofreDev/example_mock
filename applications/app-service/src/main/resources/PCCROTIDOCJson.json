@@ -1,0 +1,62 @@
+{
+  "cases": [
+    {
+      "key": "PCCROTIDOC",
+      "tramaIn": "SVPBLPTS0412370930002663        000000000                                                            10590245 0000098091479521S",
+      "tramaOut": "SVPBLPTS0412370930002663        000000000                                                            10590245 1",
+      "delay": 5
+    },
+    {
+      "key": "PCCROTIDOC",
+      "tramaIn": "SVPBLPTS0412370930002663        000000000                                                            10590245 0000098091559521S",
+      "tramaOut": "SVPBLPTS0412370930002663        000000000                                                            10590245 1",
+      "delay": 5
+    },
+    {
+      "key": "PCCROTIDOC",
+      "tramaIn": "SVPBLPTS0412370930002663        000000000                                                            10590245 0000098091559511S",
+      "tramaOut": "SVPBLPTS0412370930002663        000000000                                                            10590245 1",
+      "delay": 5
+    },
+    {
+      "key": "PCCROTIDOC",
+      "tramaIn": "SVPBLPTS0412370930002663        000000000                                                            10590245 0000098091559527S",
+      "tramaOut": "SVPBLPTS0412370930002663        000000000                                                            10590245 7",
+      "delay": 5
+    },
+    {
+      "key": "PCCROTIDOC",
+      "tramaIn": "SVPGENTS0412370930002663        000000000                                                            10590245 0000098091559521S",
+      "tramaOut": "SVPGENTS0412370930002663        000000000                                                            10590245 1",
+      "delay": 5
+    },
+    {
+      "key": "PCCROTIDOC",
+      "tramaIn": "SVPBLPTS0412370930002663        000000000                                                            105902545 0000098091559571S",
+      "tramaOut": "SVPBLPTS0412370930002663        000000000                                                            10590545 1",
+      "delay": 5
+    }
+  ],
+  "tsDynamicFields": [
+    {
+      "nombre": "FILLER",
+      "descripcion": "será codificada en 8 dig (TS)",
+      "posInicial": 102,
+      "longitud": 8
+    }
+  ],
+  "trDynamicFields": [
+    {
+      "nombre": "FILLER",
+      "descripcion": "será codificada en 8 dig (TR)",
+      "posInicial": 102,
+      "longitud": 8
+    },
+    {
+      "nombre": "FILLER",
+      "descripcion": "será codificada en 8 dig (TR)",
+      "posInicial": 102,
+      "longitud": 8
+    }
+  ]
+}
