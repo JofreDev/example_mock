@@ -18,18 +18,7 @@ import static co.com.bancolombia.model.exceptions.message.BusinessErrorMessage.I
 @Component
 @RequiredArgsConstructor
 public class Handler {
-    //private  final UseCase useCase;
-    //private  final UseCase2 useCase2;
     private final CompareFlatsUseCase compareFlatsUseCase;
-    public Mono<ServerResponse> listenGETUseCase(ServerRequest serverRequest) {
-        // usecase.logic();
-        return ServerResponse.ok().bodyValue("");
-    }
-
-    public Mono<ServerResponse> listenGETOtherUseCase(ServerRequest serverRequest) {
-        // useCase2.logic();
-        return ServerResponse.ok().bodyValue("");
-    }
 
     public Mono<ServerResponse> listenPOSTUseCase(ServerRequest serverRequest) {
 
@@ -44,7 +33,7 @@ public class Handler {
                                         .anyMatch( c -> c.toString().equals(req.getComponente())))
                                 .switchIfEmpty(Mono.error(() -> new BusinessException(INVALID_COMPONENT)))
                 )
-                .flatMap(request -> compareFlatsUseCase.compare(request.getMensaje()))
+                .flatMap(request -> compareFlatsUseCase.findFlat(request.getMensaje()))
                 .flatMap(response -> ServerResponse.ok().bodyValue(response));
 
     }

@@ -1,7 +1,6 @@
 apply plugin: 'org.springframework.boot'
 
 dependencies {
-	implementation project( ':output-flat-map-repository')
 	implementation project( ':reactive-web')
 	implementation project( ':plot-flat-file-repository')
     implementation project(':model')
