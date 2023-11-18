@@ -8,7 +8,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.core.io.buffer.DataBufferUtils;
@@ -21,7 +20,6 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.util.Optional;
-import java.util.function.Function;
 
 @Service
 @AllArgsConstructor
@@ -33,7 +31,6 @@ public class PlotFlatFileRepository implements PlotFlatRepository, DynamicFieldR
     @Value("${configuration.path}")
     private Path path;
 
-
     private Flux<DataBuffer> data;
 
 
@@ -41,78 +38,57 @@ public class PlotFlatFileRepository implements PlotFlatRepository, DynamicFieldR
         initializeDataBuffer(bufferFactory);
     }
 
-    private void initializeDataBuffer(DefaultDataBufferFactory bufferFactory) {
-        this.data = DataBufferUtils.read(path, bufferFactory, 4096);
+
+    @Override
+    public Flux<PlotFlat> createPlotFlats() {
+        return createFields("cases",PlotFlat.class );
+    }
+
+    @Override
+    public Flux<DynamicField> createDynamicFieldsTs() {
+        return createFields("tsDynamicFields",DynamicField.class );
+    }
+
+    @Override
+    public Flux<DynamicField> createDynamicFieldsTr() {
+        return createFields("trDynamicFields",DynamicField.class );
     }
 
 
-    @Override
-        public Flux<PlotFlat> createPlotFlats() {
 
-            if (data == null) {
-                initializeDataBuffer(new DefaultDataBufferFactory());
-            }
+    private <T> Flux<T> createFields(String nameField,Class<T> clazz ) {
 
-            return data.map(buffer -> {
-                        byte[] bytes = new byte[buffer.readableByteCount()];
-                        buffer.read(bytes);
-                        DataBufferUtils.release(buffer);
-                        return new String(bytes, StandardCharsets.UTF_8);
-                    })
-                    .map(jsonString -> {
-                        JsonNode jsonNode = null;
-                        try {
-                            jsonNode = objectMapper.readTree(jsonString);
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
-                        JsonNode casesNode = jsonNode.get("cases");
-
-                        return Optional.ofNullable(casesNode)
-                                .filter(JsonNode::isArray)
-                                .map(cases -> Flux.fromIterable(cases)
-                                        .map(caseNode -> objectMapper.convertValue(caseNode, PlotFlat.class)))
-                                .orElse(Flux.empty());
-                    })
-                    .flatMap(Function.identity());
-
+        if (data == null) {
+            initializeDataBuffer(new DefaultDataBufferFactory());
         }
 
-        @Override
-        public Flux<DynamicField> createDynamicFieldsTs() {
-            return createDynamicFields("tsDynamicFields");
-        }
+        return (Flux<T>) this.data.flatMap(buffer -> {
+                    byte[] bytes = new byte[buffer.readableByteCount()];
+                    buffer.read(bytes);
+                    DataBufferUtils.release(buffer);
+                    return Flux.just(new String(bytes, StandardCharsets.UTF_8));
+                })
+                .flatMap(jsonString -> {
+                    JsonNode jsonNode = null;
+                    try {
+                        jsonNode = objectMapper.readTree(jsonString);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    JsonNode casesNode = jsonNode.get(nameField);
 
-        @Override
-        public Flux<DynamicField> createDynamicFieldsTr() {
-            return createDynamicFields("trDynamicFields");
-        }
+                    return Optional.ofNullable(casesNode)
+                            .filter(JsonNode::isArray)
+                            .map(cases -> Flux.fromIterable(cases)
+                                    .map(caseNode -> objectMapper.convertValue(caseNode, clazz)))
+                            .orElse(Flux.empty());
+                });
 
+    }
 
-        private Flux<DynamicField> createDynamicFields(String nameField) {
-            return data.map(buffer -> {
-                        byte[] bytes = new byte[buffer.readableByteCount()];
-                        buffer.read(bytes);
-                        DataBufferUtils.release(buffer);
-                        return new String(bytes, StandardCharsets.UTF_8);
-                    })
-                    .map(jsonString -> {
-                        JsonNode jsonNode = null;
-                        try {
-                            jsonNode = objectMapper.readTree(jsonString);
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
-                        JsonNode casesNode = jsonNode.get(nameField);
-
-                        return Optional.ofNullable(casesNode)
-                                .filter(JsonNode::isArray)
-                                .map(cases -> Flux.fromIterable(cases)
-                                        .map(caseNode -> objectMapper.convertValue(caseNode, DynamicField.class)))
-                                .orElse(Flux.empty());
-                    })
-                    .flatMap(Function.identity());
-        }
+    private void initializeDataBuffer(DefaultDataBufferFactory bufferFactory) {
+        this.data = DataBufferUtils.read(path, bufferFactory, 8192);
+    }
 
 
 }

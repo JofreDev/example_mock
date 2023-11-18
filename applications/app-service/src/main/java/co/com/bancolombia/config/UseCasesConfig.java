@@ -15,7 +15,4 @@ import reactor.core.publisher.Flux;
         },
         useDefaultFilters = false)
 public class UseCasesConfig {
-
-
-
 }

@@ -51,12 +51,6 @@
       "descripcion": "será codificada en 8 dig (TR)",
       "posInicial": 102,
       "longitud": 8
-    },
-    {
-      "nombre": "FILLER",
-      "descripcion": "será codificada en 8 dig (TR)",
-      "posInicial": 102,
-      "longitud": 8
     }
   ]
 }

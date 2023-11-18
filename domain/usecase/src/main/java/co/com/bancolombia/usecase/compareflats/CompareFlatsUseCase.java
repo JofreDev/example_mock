@@ -4,11 +4,10 @@ import co.com.bancolombia.model.In.FlatPlotR;
 import co.com.bancolombia.model.dynamicfield.DynamicField;
 import co.com.bancolombia.model.exceptions.TechnicalException;
 import co.com.bancolombia.model.outputflat.OutputFlat;
-import co.com.bancolombia.model.outputflat.gateways.OutputFlatRepository;
-import co.com.bancolombia.model.plotflat.gateways.PlotFlatRepository;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -18,13 +17,13 @@ import static co.com.bancolombia.model.exceptions.message.TechnicalErrorMessage.
 @RequiredArgsConstructor
 public class CompareFlatsUseCase{
 
-    private final  HashMap<String, OutputFlat> mapPCCROTIDOC ;
+    private final  HashMap<String, OutputFlat> mapPCCROTIDOC;
 
     private final List<DynamicField>  listDynamicTrPCCROTIDOC;
 
 
 
-    public Mono<FlatPlotR> findFlat(String trama) {
+    public Mono<FlatPlotR> findFlat(String trama, String componente) {
 
         return mapPCCROTIDOC.keySet().stream()
                 .filter(key -> {
@@ -33,13 +32,15 @@ public class CompareFlatsUseCase{
                 })
                 .findFirst()
                 .map(mapPCCROTIDOC::get)
-                .map(entry -> FlatPlotR.builder()
-                        .mensaje( assembleOutPutFlat(entry.getTramaOut(), trama) )
-                        .componente(String.valueOf(co.com.bancolombia.model.components.Component.PCCROTIDOC))
-                        .build())
-                .map(Mono::just)
+                .map(entry -> {
+                    return Mono.just(entry)
+                            .map(delayedEntry -> FlatPlotR.builder()
+                                    .mensaje(assembleOutPutFlat(delayedEntry.getTramaOut(), trama))
+                                    .componente(String.valueOf(co.com.bancolombia.model.components.Component.valueOf(componente)))
+                                    .build())
+                            .delayElement(Duration.ofMillis(entry.getDelay()));
+                })
                 .orElse(Mono.error(() -> new TechnicalException(PLOTFLAT_NOT_FOUND_ERROR)));
-
     }
 
     private String assembleOutPutFlat(String tramaOutOriginal, String tramaIn) {

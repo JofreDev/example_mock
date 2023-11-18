@@ -4,6 +4,7 @@ import co.com.bancolombia.model.In.FlatPlotR;
 import co.com.bancolombia.model.exceptions.BusinessException;
 import co.com.bancolombia.usecase.compareflats.CompareFlatsUseCase;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
@@ -18,7 +19,11 @@ import static co.com.bancolombia.model.exceptions.message.BusinessErrorMessage.I
 @Component
 @RequiredArgsConstructor
 public class Handler {
+
+    @Value("${rest.config.path}")
+    private String restPath;
     private final CompareFlatsUseCase compareFlatsUseCase;
+
 
     public Mono<ServerResponse> listenPOSTUseCase(ServerRequest serverRequest) {
 
@@ -32,8 +37,10 @@ public class Handler {
                                 .filter( req ->  Arrays.stream(co.com.bancolombia.model.components.Component.values())
                                         .anyMatch( c -> c.toString().equals(req.getComponente())))
                                 .switchIfEmpty(Mono.error(() -> new BusinessException(INVALID_COMPONENT)))
+                                .filter( req ->  req.getComponente().equals(restPath))
+                                .switchIfEmpty(Mono.error(() -> new BusinessException(INVALID_COMPONENT)))
                 )
-                .flatMap(request -> compareFlatsUseCase.findFlat(request.getMensaje()))
+                .flatMap(request -> compareFlatsUseCase.findFlat(request.getMensaje(), request.getComponente()))
                 .flatMap(response -> ServerResponse.ok().bodyValue(response));
 
     }
