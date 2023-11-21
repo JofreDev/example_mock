@@ -26,10 +26,10 @@ cors:
 
 rest:
   config:
-    path: "${REST_CONFIG_PATH:PCCROTIDOC}"
+    path: "${REST_CONFIG_PATH:PCCRLGVCL}" ###Poner el nombre de la acción
 
 configuration:
-  path: "${CONFIGURATION_PATH:classpath:config/PCCROTIDOCJson.json}"
+  path: "${CONFIGURATION_PATH:classpath:config/PCCRLGVCLJson.json}" ###Poner el nombre del fichero
 
 
 

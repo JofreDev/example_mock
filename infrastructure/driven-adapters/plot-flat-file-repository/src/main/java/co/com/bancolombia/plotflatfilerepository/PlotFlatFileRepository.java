@@ -87,7 +87,7 @@ public class PlotFlatFileRepository implements PlotFlatRepository, DynamicFieldR
     }
 
     private void initializeDataBuffer(DefaultDataBufferFactory bufferFactory) {
-        this.data = DataBufferUtils.read(path, bufferFactory, 8192);
+        this.data = DataBufferUtils.read(path, bufferFactory, 200000);
     }
 
 

@@ -1,0 +1,110 @@
+{
+  "cases": [
+    {
+      "key": "PCCRLGVCL",
+      "tramaIn": "SVPBLPTS0412370930002663        000000121RESPUESTA ARMADA EXITOSAMENTE                               10590245 S37093000266304120000098091479521               02023032809272501210000000000030000003                     El Cliente posee Clave Bloqueada.                                                                                                                                                                                                                                                                                                                                                                                     BLPSVP",
+      "tramaOut": "SVPBLPTS0412370930002663        000000121EXITOSA LA ACCIÓN                                           10590245 S37093000266304120000098091479521               02023032809272501210000000000030000003                     El Cliente posee Clave Bloqueada.                                                                                                                                                                                                                                                                                                                                                                                     BLPSVP",
+      "delay": 5
+    },
+    {
+      "key": "PCCRLGVCL",
+      "tramaIn": "SVPBLPTS0412370930002663        000000360RESPUESTA ARMADA EXITOSAMENTE                               10590245 S37093000266304120000098091559521               02023040510590200000000861444030000003                     Transacción exitosa.                                                                                                                                                                                                                                                                                                                                                                                                  BLPSVP",
+      "tramaOut": "SVPBLPTS0412370930002663        000000360EXITOSA LA ACCIÓN                                           10590245 S37093000266304120000098091559521               02023040510590200000000861444030000003                     Transacción exitosa.                                                                                                                                                                                                                                                                                                                                                                                                  BLPSVP",
+      "delay": 5
+    },
+    {
+      "key": "PCCRLGVCL",
+      "tramaIn": "SVPBLPTS0412370930002663        000000360RESPUESTA ARMADA EXITOSAMENTE                               10590245 S37093000266304120000098091559511               02023040510590200000000861444030000003                     Transacción exitosa.                                                                                                                                                                                                                                                                                                                                                                                                  BLPSVP",
+      "tramaOut": "SVPBLPTS0412370930002663        000000360EXITOSA LA ACCIÓN                                           10590245 S37093000266304120000098091559511               02023040510590200000000861444030000003                     Transacción exitosa.                                                                                                                                                                                                                                                                                                                                                                                                  BLPSVP",
+      "delay": 5
+    },
+    {
+      "key": "PCCRLGVCL",
+      "tramaIn": "SVPBLPTS0412370930002663        000000564RESPUESTA ARMADA EXITOSAMENTE                               10590245 S37093000266304120000098091559527               02023032714200405640000000000030000003                     TRANSACCIÓN EXITOSA                                                                                                                                                                                                                                                                                                                                                                                                   BLPSVP",
+      "tramaOut": "SVPBLPTS0412370930002663        000000564EXITOSA LA ACCIÓN                                           10590245 S37093000266304120000098091559527               02023032714200405640000000000030000003                     TRANSACCIÓN EXITOSA                                                                                                                                                                                                                                                                                                                                                                                                   BLPSVP",
+      "delay": 5
+    },
+    {
+      "key": "PCCRLGVCL",
+      "tramaIn": "SVPGENTS0412370930002663        000000101RESPUESTA ARMADA EXITOSAMENTE                               10590245 S37093000266304120000098091559521               02023032417151101010000000000990000003                     TRANSACCIÓN EXITOSA                                                                                                                                                                                                                                                                                                                                                                                                      SVP",
+      "tramaOut": "SVPGENTS0412370930002663        000000101EXITOSA LA ACCIÓN                                           10590245 S37093000266304120000098091559521               02023032417151101010000000000990000003                     TRANSACCIÓN EXITOSA                                                                                                                                                                                                                                                                                                                                                                                                      SVP",
+      "delay": 5
+    },
+    {
+      "key": "PCCRLGVCL",
+      "tramaIn": "SVPBLPTS0412370930002663        000000282RESPUESTA ARMADA EXITOSAMENTE                               10590245 S37093000266304120000098091559571               02023032417250002820000532904030000003                     Cliente no existe en el CABFFTARJ                                                                                                                                                                                                                                                                                                                                                                                     BLPSVP",
+      "tramaOut": "SVPBLPTS0412370930002663        000000282EXITOSA LA ACCIÓN                                           10590245 S37093000266304120000098091559571               02023032417250002820000532904030000003                     Cliente no existe en el CABFFTARJ                                                                                                                                                                                                                                                                                                                                                                                     BLPSVP",
+      "delay": 5
+    },
+    {
+      "key": "PCCRLGVCL",
+      "tramaIn": "SVPBLPTS0412370930002663        000000121RESPUESTA ARMADA EXITOSAMENTE                               10590245 S37093000266304120000098091559521               02023032809272501210000000000030000003                     El Cliente posee Clave Bloqueada.                                                                                                                                                                                                                                                                                                                                                                                     BLPSVP",
+      "tramaOut": "SVPBLPTS0412370930002663        000000121EXITOSA LA ACCIÓN                                           10590245 S37093000266304120000098091479521               02023032809272501210000000000030000003                     El Cliente posee Clave Bloqueada.                                                                                                                                                                                                                                                                                                                                                                                     BLPSVP",
+      "delay": 5
+    },
+    {
+      "key": "PCCRLGVCL",
+      "tramaIn": "SVPBLPTS0412370930002663        000000133RESPUESTA ARMADA EXITOSAMENTE                               10590245 S37093000266304120000098091479521               02023072515334101330000000000030000003                     Cliente no existe en Maestro de Tarjetas.                                                                                                                                                                                                                                                                                                                                                                             BLPSVP",
+      "tramaOut": "SVPBLPTS0412370930002663        000000133RESPUESTA ARMADA EXITOSAMENTE                               10590245 S37093000266304120000098091479521               02023072515334101330000000000030000003                     Cliente no existe en Maestro de Tarjetas.                                                                                                                                                                                                                                                                                                                                                                             BLPSVP",
+      "delay": 5
+    },
+    {
+      "key": "PCCRLGVCL",
+      "tramaIn": "SVPBLPTS0412370930002663        000000133RESPUESTA ARMADA EXITOSAMENTE                               10590245 S37093000266304120000098091559511               02023073116174501330000486803030000003                     Cliente no existe en Maestro de Tarjetas.                                                                                                                                                                                                                                                                                                                                                                             BLPSVP",
+      "tramaOut": "SVPBLPTS0412370930002663        000000133RESPUESTA ARMADA EXITOSAMENTE                               10590245 S37093000266304120000098091559511               02023073116174501330000486803030000003                     Cliente no existe en Maestro de Tarjetas.                                                                                                                                                                                                                                                                                                                                                                             BLPSVP",
+      "delay": 5
+    }
+  ],
+  "tsDynamicFields": [
+    {
+      "nombre": "CEROS",
+      "descripcion": "Ceros que faltan en Blue Age",
+      "posInicial": 190,
+      "longitud": 6
+    },
+    {
+      "nombre": "COMPROVANTE",
+      "descripcion": "Numero generado en MATRONVECH",
+      "posInicial": 182,
+      "longitud": 6
+    },
+    {
+      "nombre": "TSTRAMA",
+      "descripcion": "Hora min y seg",
+      "posInicial": 168,
+      "longitud": 6
+    },
+    {
+      "nombre": "TSTRAMA",
+      "descripcion": "Fecha con año,mes y dia",
+      "posInicial": 160,
+      "longitud": 8
+    },
+    {
+      "nombre": "FILLER",
+      "descripcion": "Fecha codificada en 8 dig",
+      "posInicial": 102,
+      "longitud": 8
+    }
+  ],
+  "trDynamicFields": [
+    {
+      "nombre": "TSTRAMA",
+      "descripcion": "Hora min y seg",
+      "posInicial": 168,
+      "longitud": 6
+    },
+    {
+      "nombre": "TSTRAMA",
+      "descripcion": "Fecha con año,mes y dia",
+      "posInicial": 160,
+      "longitud": 8
+    },
+    {
+      "nombre": "FILLER",
+      "descripcion": "Fecha codificada en 8 dig",
+      "posInicial": 102,
+      "longitud": 8
+    }
+  ]
+}

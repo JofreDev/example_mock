@@ -27,6 +27,8 @@ public class Handler {
 
     public Mono<ServerResponse> listenPOSTUseCase(ServerRequest serverRequest) {
 
+        String hola = null;
+
 
 
         return serverRequest.bodyToMono(FlatPlotR.class)
